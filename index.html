@@ -5,10 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>画板</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <canvas id="canvas"></canvas>
+    <script>
+        let painting = false;
+        let canvas = document.getElementById('canvas');
+        let isTouchDevice = 'ontouchstart' in document.documentElement;
+        let ctx = canvas.getContext('2d');
+        let last;
+        canvas.width = document.documentElement.clientWidth;
+        canvas.height = document.documentElement.clientHeight;
+        ctx.fillStyle = "black";
+        ctx.strokeStyle = "none";
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+        if (isTouchDevice) {
+            canvas.ontouchstart = (e) => {
+                let phoneX = e.touches[0].clientX;
+                let phoneY = e.touches[0].clientY;
+                last = [phoneX, phoneY];
+            }
+            canvas.ontouchmove = (e) => {
+                let phoneX = e.touches[0].clientX;
+                let phoneY = e.touches[0].clientY;
+                drawLine(last[0], last[1], phoneX, phoneY);
+                last = [phoneX, phoneY];
 
+            }
+        } else {
+            canvas.onmousedown = (e) => {
+                painting = true;
+                last = [e.clientX, e.clientY]
+                canvas.onmousemove = (e) => {
+                    if (painting === true) {
+                        drawLine(last[0], last[1], e.clientX, e.clientY);
+                        last = [e.clientX, e.clientY]
+                    }
+                }
+            }
+            canvas.onmouseup = () => {
+                painting = false;
+            }
+        }
+
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1)
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+    </script>
 </body>
 
 </html>
