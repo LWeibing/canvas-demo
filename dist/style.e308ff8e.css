@@ -3,16 +3,17 @@
   margin: 0;
   box-sizing: border-box;
 }
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
+#canvas {
+  display: block;
+  position: relative;
 }
-
 .tool-box {
   width: 100vw;
-  min-height: 50px;
-  background-color: #eee;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid blue;
   display: flex;
   align-items: center;
 }
@@ -26,9 +27,6 @@
 }
 .eraser {
 }
-#canvas {
-  width: auto;
-  height: 100vh;
-  display: block;
-  position: relative;
-}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
