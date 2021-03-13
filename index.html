@@ -2,19 +2,68 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+    />
     <title>画板</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="//at.alicdn.com/t/font_2417015_qjpc6hrzss.js"></script>
   </head>
 
   <body>
     <div class="wrapper">
       <div class="tool-box">
-        <div class="tool clear" title="清空"></div>
-        <div class="tool eraser" title="橡皮"></div>
+        <div class="line-width">
+          <ul>
+            <li class="tool selected" index="1"></li>
+            <li class="tool" index="2"></li>
+            <li class="tool" index="4"></li>
+            <li class="tool" index="6"></li>
+            <li class="tool" index="8"></li>
+            <li class="tool" index="10"></li>
+            <li class="tool" index="12"></li>
+          </ul>
+        </div>
+        <div class="color">
+          <ul>
+            <li class="tool selected" name="black"></li>
+            <li class="tool" name="white"></li>
+            <li class="tool" name="red"></li>
+            <li class="tool" name="blue"></li>
+            <li class="tool" name="yellow"></li>
+            <li class="tool" name="green"></li>
+            <li class="tool" name="orange"></li>
+            <li class="tool" name="purple"></li>
+            <li class="tool" name="pink"></li>
+            <li class="tool" name="gray"></li>
+            <li class="tool" name="brown"></li>
+            <li class="tool" name="cyan"></li>
+          </ul>
+        </div>
+        <div class="button">
+          <div class="tool clear">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#i-clear"></use>
+            </svg>
+            <span>清空</span>
+          </div>
+
+          <div class="tool eraser">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#i-back"></use>
+            </svg>
+            <span>撤销</span>
+          </div>
+          <div class="tool download">
+            <svg class="icon" aria-hidden="true">
+              <use xlink:href="#i-download"></use>
+            </svg>
+            <span>保存</span>
+          </div>
+        </div>
       </div>
-        <canvas id="canvas"></canvas>
-      
+      <canvas id="canvas"></canvas>
     </div>
     <script src="main.js"></script>
   </body>

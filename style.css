@@ -3,32 +3,81 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+.icon {
+  width: 30px;
+  height: 30px;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
 }
 
 .tool-box {
-  width: 100vw;
-  min-height: 50px;
-  background-color: #eee;
+  min-height: 60px;
+  background-color: #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-y: auto;
+}
+.tool-box ul {
+  list-style: none;
   display: flex;
   align-items: center;
 }
+.tool-box ul > li {
+  width: 26px;
+  height: 26px;
+}
+.tool:last-child {
+  margin-right: 0;
+}
 .tool {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.line-width {
+  margin-left: 10px;
+}
+.line-width > ul > li {
+  border-color: #333;
+  border-style: solid;
+}
+.line-width > ul > li.selected {
   width: 30px;
   height: 30px;
-  border: 1px solid red;
-  margin: 0 10px;
+  border-color: #fff;
 }
-.clear {
+.color > ul > li.selected {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
 }
-.eraser {
+.button {
+  display: flex;
 }
 #canvas {
-  width: auto;
-  height: 100vh;
+  width: 100vw;
+  height: calc(100vh - 60px);
   display: block;
   position: relative;
+  border-color: #fff;
+}
+@media (max-width: 500px) {
+  .color {
+    margin-left: 50px;
+  }
+  .button {
+    margin-left: 50px;
+  }
 }
