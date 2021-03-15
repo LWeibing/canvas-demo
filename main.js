@@ -1,6 +1,3 @@
-document.body.ontouchmove = function (e) {
-  e.preventDefault();
-};
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let painting = false;
@@ -9,16 +6,18 @@ let points = [];
 let lastImg;
 let beginPoint;
 let clear = document.querySelector(".clear");
-let toolBox = document.querySelector(".tool-box");
+let wrapper = document.querySelector(".wrapper");
 let eraser = document.querySelector(".eraser");
 let download = document.querySelector(".download");
 let flag = false;
 let colorList = document.querySelector(".color").getElementsByTagName("li");
 let lineList = document.querySelector(".line-width").getElementsByTagName("li");
-toolBox.ontouchmove = function (e) {
-  e.stopPropagation();
-  //停止冒泡
-};
+overscroll(wrapper);
+document.body.addEventListener("touchmove", function (evt) {
+  if (!evt._isScroller) {
+    evt.preventDefault();
+  }
+});
 let creatCanvas = () => {
   canvas.setAttribute("width", canvas.offsetWidth);
   canvas.setAttribute("height", canvas.offsetHeight);
@@ -125,4 +124,21 @@ function downLoadImage(canvas, name) {
   a.href = canvas.toDataURL("image/png");
   a.download = name;
   a.click();
+}
+function overscroll(el) {
+  el.addEventListener("touchstart", function () {
+    const top = el.scrollTop;
+    const totalScroll = el.scrollHeight;
+    const currentScroll = top + el.offsetHeight;
+    if (top === 0) {
+      el.scrollTop = 1;
+    } else if (currentScroll === totalScroll) {
+      el.scrollTop = top - 1;
+    }
+  });
+  el.addEventListener("touchmove", function (evt) {
+    if (el.offsetHeight < el.scrollHeight) {
+      evt._isScroller = true;
+    }
+  });
 }
