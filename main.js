@@ -9,11 +9,16 @@ let points = [];
 let lastImg;
 let beginPoint;
 let clear = document.querySelector(".clear");
+let toolBox = document.querySelector(".tool-box");
 let eraser = document.querySelector(".eraser");
 let download = document.querySelector(".download");
 let flag = false;
 let colorList = document.querySelector(".color").getElementsByTagName("li");
 let lineList = document.querySelector(".line-width").getElementsByTagName("li");
+toolBox.ontouchmove = function (e) {
+  e.stopPropagation();
+  //停止冒泡
+};
 let creatCanvas = () => {
   canvas.setAttribute("width", canvas.offsetWidth);
   canvas.setAttribute("height", canvas.offsetHeight);
