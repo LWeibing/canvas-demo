@@ -1,11 +1,6 @@
-document.body.addEventListener(
-  "touchmove",
-  function (evt) {
-    // 禁止微信浏览器拖动
-    evt.preventDefault();
-  },
-  { passive: false }
-);
+document.body.ontouchmove = function (e) {
+  e.preventDefault();
+};
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let painting = false;
