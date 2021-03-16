@@ -6,7 +6,7 @@ let points = [];
 let lastImg;
 let beginPoint;
 let clear = document.querySelector(".clear");
-let wrapper = document.querySelector(".wrapper");
+let toolBox = document.querySelector(".tool-box");
 let eraser = document.querySelector(".eraser");
 let download = document.querySelector(".download");
 let flag = false;
@@ -126,3 +126,28 @@ function downLoadImage(canvas, name) {
   a.download = name;
   a.click();
 }
+let overscroll = function (el) {
+  el.addEventListener("touchstart", function () {
+    let top = el.scrollTop;
+    let totalScroll = el.scrollHeight;
+    let currentScroll = top + el.offsetHeight;
+    if (top === 0) {
+      el.scrollTop = 1;
+    } else if (currentScroll === totalScroll) {
+      el.scrollTop = top - 1;
+    }
+  });
+  el.addEventListener("touchmove", function (evt) {
+    if (el.offsetHeight < el.scrollHeight) evt._isScroller = true;
+  });
+};
+overscroll(toolBox);
+document.body.addEventListener(
+  "touchmove",
+  function (evt) {
+    if (!evt._isScroller) {
+      evt.preventDefault();
+    }
+  },
+  { passive: false }
+);
