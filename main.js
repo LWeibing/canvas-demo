@@ -19,13 +19,6 @@ document.body.addEventListener(
   },
   { passive: false }
 );
-wrapper.addEventListener(
-  "touchmove",
-  function (e) {
-    e.stopPropagation();
-  },
-  { passive: false }
-);
 let creatCanvas = () => {
   canvas.setAttribute("width", canvas.offsetWidth);
   canvas.setAttribute("height", canvas.offsetHeight);
