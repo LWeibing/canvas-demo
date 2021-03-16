@@ -6,7 +6,7 @@ let points = [];
 let lastImg;
 let beginPoint;
 let clear = document.querySelector(".clear");
-let toolBox = document.querySelector(".tool-box");
+let wrapper = document.querySelector(".wrapper");
 let eraser = document.querySelector(".eraser");
 let download = document.querySelector(".download");
 let flag = false;
@@ -134,7 +134,7 @@ let overscroll = function (el) {
     if (el.offsetWidth < el.scrollWidth) evt._isScroller = true;
   });
 };
-overscroll(toolBox);
+overscroll(wrapper);
 document.body.addEventListener(
   "touchmove",
   function (evt) {
