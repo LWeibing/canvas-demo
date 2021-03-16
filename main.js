@@ -12,13 +12,6 @@ let download = document.querySelector(".download");
 let flag = false;
 let colorList = document.querySelector(".color").getElementsByTagName("li");
 let lineList = document.querySelector(".line-width").getElementsByTagName("li");
-document.body.addEventListener(
-  "touchmove",
-  function (e) {
-    e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
-  },
-  { passive: false }
-);
 let creatCanvas = () => {
   canvas.setAttribute("width", canvas.offsetWidth);
   canvas.setAttribute("height", canvas.offsetHeight);
