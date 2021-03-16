@@ -12,12 +12,20 @@ let download = document.querySelector(".download");
 let flag = false;
 let colorList = document.querySelector(".color").getElementsByTagName("li");
 let lineList = document.querySelector(".line-width").getElementsByTagName("li");
-overscroll(wrapper);
-document.body.addEventListener("touchmove", function (evt) {
-  if (!evt._isScroller) {
-    evt.preventDefault();
-  }
-});
+document.body.addEventListener(
+  "touchmove",
+  function (e) {
+    e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
+  },
+  { passive: false }
+);
+wrapper.addEventListener(
+  "touchmove",
+  function (e) {
+    e.stopPropagation();
+  },
+  { passive: false }
+);
 let creatCanvas = () => {
   canvas.setAttribute("width", canvas.offsetWidth);
   canvas.setAttribute("height", canvas.offsetHeight);
@@ -124,21 +132,4 @@ function downLoadImage(canvas, name) {
   a.href = canvas.toDataURL("image/png");
   a.download = name;
   a.click();
-}
-function overscroll(el) {
-  el.addEventListener("touchstart", function () {
-    const top = el.scrollTop;
-    const totalScroll = el.scrollHeight;
-    const currentScroll = top + el.offsetHeight;
-    if (top === 0) {
-      el.scrollTop = 1;
-    } else if (currentScroll === totalScroll) {
-      el.scrollTop = top - 1;
-    }
-  });
-  el.addEventListener("touchmove", function (evt) {
-    if (el.offsetHeight < el.scrollHeight) {
-      evt._isScroller = true;
-    }
-  });
 }
